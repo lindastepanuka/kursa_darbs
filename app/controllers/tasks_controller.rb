@@ -40,7 +40,7 @@ class TasksController < ApplicationController
   def complete
     @task = Task.find(params[:id])
     @task.complete
-    redirect_to :show
+    redirect_to @task, notice: 'Task was successfully completed'
   end
 
   def overdue_index
