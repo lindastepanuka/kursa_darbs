@@ -56,7 +56,9 @@ ToDo2013::Application.routes.draw do
   # just remember to delete public/index.html.
   root :to => 'projects#index'
 
-  resources :tasks
+  resources :tasks do
+    get :complete, :on => :member
+  end
   match 'complete_index' => 'tasks#complete_index', as: :complete_index
   match 'overdue_index' => 'tasks#overdue_index', as: :overdue_index
   match 'to_do_index' => 'tasks#to_do_index', as: :to_do_index
