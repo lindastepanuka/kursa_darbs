@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe Project, :type => :feature do
+feature Project do
   use_transactional_fixtures = true
   fixtures :projects
 
-  before :each do
+  background do
     @project = projects(:project)
   end
 
-  it "creates a new project" do
+  scenario "creates a new project" do
     visit '/projects/new'
     within("form") do
       fill_in 'Name', with: 'Projekta nosaukums'
@@ -21,18 +21,18 @@ describe Project, :type => :feature do
     expect(page).to have_content 'Projekta apraksts'
   end
 
-  it "views project index" do
+  scenario "views project index" do
     visit '/projects'
     expect(page).to have_content @project.name
   end
 
-  it "views project" do
+  scenario "views project" do
     visit "/projects/#{@project.id}"
     expect(page).to have_content @project.name
     expect(page).to have_content @project.description
   end
 
-  it "deletes project" do
+  scenario "deletes project" do
     project_count = Project.all.size
     visit '/projects'
     first("tr.index").click_link('Destroy')
