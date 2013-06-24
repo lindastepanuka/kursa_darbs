@@ -2,7 +2,7 @@
 
 <p>
   <b>Project:</b>
-  <%= @task.project_id %>
+  <%= @task.project.try(:name) %>
 </p>
 
 <p>
