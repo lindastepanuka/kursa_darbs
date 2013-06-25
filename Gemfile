@@ -24,7 +24,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'capybara'
   gem 'steak'
+  gem 'simplecov'
 end
+
+
 
 gem 'jquery-rails'
 
