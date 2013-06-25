@@ -69,6 +69,13 @@ class TasksControllerTest < ActionController::TestCase
     assert_equal 'Task was successfully created.', flash[:notice]
   end
 
+  test "should not create task" do
+    assert_difference('Task.count') do
+      post :create, task: { completion_date: @task.completion_date, description: @task.description, name: @task.name, priority: @task.priority, project_id: @task.project_id, state: @task.state }
+    end
+    assert_response :success
+  end
+
   test "should show task" do
     get :show, id: @task
     assert_response :success
